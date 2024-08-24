@@ -1,7 +1,6 @@
 #pragma once
 
 #include <windows.h>
-#include <Windows.h>
 #include <iostream>
 #include <vector>
 #include <deque>
@@ -12,6 +11,9 @@
 #include <stdio.h>
 #include <functional>
 
+#include "DSRLogger.h"
+#include "DSRHook.h"
+
 #define int3 __debugbreak();
 
 
@@ -19,4 +21,6 @@ class DSRArch {
 public:
 	static VOID Start();
 	virtual BOOL Initialize();
+private:
+	std::shared_ptr<DSRLogger> logger;
 };

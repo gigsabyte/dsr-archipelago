@@ -129,6 +129,8 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ModuleDefinitionFile>dinput8.def</ModuleDefinitionFile>
+      <AdditionalDependencies>libMinHook-x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\thegi\Documents\GitHub\dsr-archipelago\dsr-archipelago-client\submodules\minhook\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -151,9 +153,12 @@
   <ItemGroup>
     <ClCompile Include="dinput8.cpp" />
     <ClCompile Include="DSArch.cpp" />
+    <ClCompile Include="DSRHook.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DSArch.h" />
+    <ClInclude Include="DSRHook.h" />
+    <ClInclude Include="DSRLogger.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dinput8.def" />

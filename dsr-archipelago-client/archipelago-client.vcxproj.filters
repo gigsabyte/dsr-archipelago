@@ -13,28 +13,40 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\dinput8">
+      <UniqueIdentifier>{659d8ee3-c14b-4043-930d-26bc7e3367d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dinput8.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DSArch.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DSRHook.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dinput8.cpp">
+      <Filter>Source Files\dinput8</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DSArch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DSRLogger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DSRHook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="dinput8.def">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\dinput8</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
     <MASM Include="dinput8_asm.asm">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\dinput8</Filter>
     </MASM>
   </ItemGroup>
 </Project>

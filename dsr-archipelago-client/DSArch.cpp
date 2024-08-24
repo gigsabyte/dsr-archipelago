@@ -1,12 +1,14 @@
 #include "DSArch.h"
 
 DSRArch* Arch;
+DSRHook* Hook;
 
 VOID DSRArch::Start() {
 
 	Arch = new DSRArch();
 
 	if (!Arch->Initialize()) {
+		Sleep(100000);
 		__debugbreak();
 	};
 
@@ -23,11 +25,29 @@ BOOL DSRArch::Initialize() {
 
 	FILE* fp;
 
+	logger = DSRLogger::get();
+
 	AllocConsole();
 	SetConsoleTitleA("Dark Souls Remastered Archipelago Console");
 	freopen_s(&fp, "CONOUT$", "w", stdout);
 	freopen_s(&fp, "CONIN$", "r", stdin);
-	printf_s("Starting Dark Souls: Remastered ...\n");
 
-	return true;
+
+	logger->log ("Starting Dark Souls: Remastered ...\n");
+
+	Hook = new DSRHook();
+
+	BOOL initialized = false;
+	
+	try {
+		logger->log("initializing!");
+		initialized = Hook->initialize();
+		logger->log("initialized!");
+	}
+	catch (const std::exception&) {
+		logger->log("Encountered exception");
+	}
+	
+
+	return initialized;
 }
