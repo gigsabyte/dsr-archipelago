@@ -33,7 +33,7 @@ DWORD WINAPI Begin(LPVOID lpParam) {
 		mProcs[i] = (UINT_PTR)GetProcAddress(mHinstDLL, mImportNames[i]);
 	};
 
-	CreateThread(0, 0, (LPTHREAD_START_ROUTINE)Arch.Start, 0, 0, 0);
+	CreateThread(0, 0, (LPTHREAD_START_ROUTINE)Arch.start, 0, 0, 0);
 
 	return FALSE;
 };

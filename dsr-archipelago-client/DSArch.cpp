@@ -3,18 +3,16 @@
 DSRArch* Arch;
 DSRHook* Hook;
 
-VOID DSRArch::Start() {
+VOID DSRArch::start() {
 
 	Arch = new DSRArch();
 
-	if (!Arch->Initialize()) {
-		Sleep(100000);
+	if (!Arch->initialize()) {
+		Sleep(10000);
 		__debugbreak();
 	};
 
-	for (int i = 0; i < 5; ++i) {
-		Sleep(1000);
-	}
+	Sleep(2000);
 	Hook->enableHook();
 
 	while (true) {
@@ -26,7 +24,7 @@ VOID DSRArch::Start() {
 	return;
 };
 
-BOOL DSRArch::Initialize() {
+BOOL DSRArch::initialize() {
 
 	FILE* fp;
 
@@ -52,7 +50,6 @@ BOOL DSRArch::Initialize() {
 	catch (const std::exception&) {
 		logger->log("Encountered exception");
 	}
-	
 
 	return initialized;
 }
