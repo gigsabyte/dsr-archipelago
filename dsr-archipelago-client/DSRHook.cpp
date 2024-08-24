@@ -1,10 +1,22 @@
 #include "DSRHook.h"
 
-using getItemDef = int(_fastcall*)(int param_1, uint32_t param_2, uint32_t param_3, int param_4);
+using getItemDef = int(_fastcall*)(int param_1, uint32_t param_2, int param_3, int param_4);
 getItemDef originalGetItem;
 
-int __fastcall getItemOverride(int param_1, uint32_t param_2, uint32_t param_3, int param_4) {
-	return originalGetItem(param_1, param_2, param_3, param_4);
+// 3 humanity:
+// 1073741824 dec = 40000000 hex. param_1 = item category
+// 500 dec = 1F4 hex. param_2 = item id (offset)
+// 3 = amount
+// -1 = param_4 = used as a parameter for another function IF value is NOT -1
+int __fastcall getItemOverride(int param_1, uint32_t param_2, int param_3, int param_4) {
+	std::cout << param_1 << std::endl;
+	std::cout << param_2 << std::endl;
+	std::cout << param_3 << std::endl;
+	std::cout << param_4 << std::endl;
+	
+	int prism_stone_category = 0x40000000;
+	uint32_t prism_stone_id = 0x0172;
+	return originalGetItem(prism_stone_category, prism_stone_id, 1, param_4);
 }
 
 /*
@@ -45,6 +57,11 @@ BOOL DSRHook::initialize() {
 		logger->log("Couldn't create hook!");
 		return false;
 	}
+	logger->log("Created hook!");
+	return true;
+}
+
+BOOL DSRHook::enableHook() {
 	if (MH_EnableHook(MH_ALL_HOOKS) != MH_OK) {
 		logger->log("Couldn't enable hook!");
 		return false;

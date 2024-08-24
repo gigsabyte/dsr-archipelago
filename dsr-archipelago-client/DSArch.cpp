@@ -12,6 +12,11 @@ VOID DSRArch::Start() {
 		__debugbreak();
 	};
 
+	for (int i = 0; i < 5; ++i) {
+		Sleep(1000);
+	}
+	Hook->enableHook();
+
 	while (true) {
 		Sleep(1000);
 	};

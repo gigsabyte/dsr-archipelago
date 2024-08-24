@@ -18,6 +18,13 @@ class DSRHook {
 public:
 	virtual BOOL initialize();
 	virtual BYTE* findPattern(BYTE* pBaseAddress, BYTE* pbMask, const char* pszMask, size_t nLength);
+	virtual BOOL enableHook();
+
+	HANDLE hHeap;
+
+	//0x48895C2418895424105556574154415541564157488D6C24F9
+	// 48 89 5C 24 18 895424105556574154415541564157488D6C24F9
+	//0x140000000
 
 private:
 	static uintptr_t GetModuleBaseAddress();
