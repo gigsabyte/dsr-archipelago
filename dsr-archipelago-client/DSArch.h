@@ -1,5 +1,6 @@
 #pragma once
 
+#include <windows.h>
 #include "DSRLogger.h"
 #include "DSRHook.h"
 
@@ -12,4 +13,5 @@ public:
 	virtual BOOL initialize();
 private:
 	std::shared_ptr<DSRLogger> logger;
+	static VOID readInput();
 };

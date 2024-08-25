@@ -16,10 +16,12 @@ void __fastcall getItemOverride(long long param1, uint32_t* itemData, int* param
 	std::cout << "param_3" << std::endl;
 	std::cout << *param3 << std::endl;
 	
-	// Replace the item with a prism stone
-	uint32_t prism_stone = 0x40000172;
-	itemData[1] = prism_stone; // item ID
-	itemData[3] = 1; // amount
+	// Replace the item with a prism stone if necessary
+	if (param1 != 0) {
+		uint32_t prism_stone = 0x40000172;
+		itemData[1] = prism_stone; // item ID
+		itemData[3] = 1; // amount
+	}
 
 	// Invoke the original function
 	originalGetItem(param1, itemData, param3);
@@ -56,4 +58,22 @@ BOOL DSRHook::enableHook() {
 	}
 	logger->log("Hooked successfully!");
 	return true;
+}
+
+VOID DSRHook::giveItem(uint32_t itemId, int amount) {
+
+	// Default to giving a prism stone
+	uint32_t itemToGive = itemId;
+	if (itemId == 0) {
+		itemToGive = 0x40000172;
+	}
+
+	uint32_t itemData[4] = { 1, itemToGive, 0xFFFFFFFFF, amount };
+	long long param1 = 0;
+	int param3 = 1;
+
+	typedef void (*GetItemFunc)(long long, uint32_t*, int*);
+
+	GetItemFunc invokeGetItem = (GetItemFunc)0x1403FE3B0;
+	invokeGetItem(param1, itemData, &param3);
 }
