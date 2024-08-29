@@ -9,5 +9,4 @@ public:
 	virtual VOID giveItem(uint32_t itemId, int amount);
 private:
 	std::shared_ptr<DSRLogger> logger;
-
 };
