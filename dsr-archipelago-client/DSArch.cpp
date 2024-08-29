@@ -2,9 +2,11 @@
 
 DSRArch* Arch;
 DSRHook* Hook;
+DSRLogger* Logger;
 
 VOID DSRArch::start() {
 
+	Logger = new DSRLogger();
 	Arch = new DSRArch();
 
 	if (!Arch->initialize()) {
@@ -20,6 +22,8 @@ VOID DSRArch::start() {
 	};
 
 	delete Arch;
+	delete Hook;
+	delete Logger;
 
 	return;
 };
@@ -28,27 +32,25 @@ BOOL DSRArch::initialize() {
 
 	FILE* fp;
 
-	logger = DSRLogger::get();
-
 	AllocConsole();
 	SetConsoleTitleA("Dark Souls Remastered Archipelago Console");
 	freopen_s(&fp, "CONOUT$", "w", stdout);
 	freopen_s(&fp, "CONIN$", "r", stdin);
 
 
-	logger->log("Starting Dark Souls: Remastered ...\n");
+	Logger->log("Starting Dark Souls: Remastered ...");
 
 	Hook = new DSRHook();
 
 	BOOL initialized = false;
 	
 	try {
-		logger->log("initializing!");
+		Logger->log("Initializing!");
 		initialized = Hook->initialize();
-		logger->log("initialized!");
+		Logger->log("Initialized!");
 	}
 	catch (const std::exception&) {
-		logger->log("Encountered exception");
+		Logger->error("Encountered exception");
 	}
 
 	// Start command prompt
@@ -64,15 +66,15 @@ VOID DSRArch::readInput() {
 
 #if _DEBUG
 		if (line == "p") {
-			std::cout << "Giving prism stone..." << std::endl;
+			Logger->log("Giving prism stone...");
 			Hook->giveItem(0, 5);
 		}
 		else if (line == "l") {
-			std::cout << "Giving Lordvessel..." << std::endl;
+			Logger->log("Giving Lordvessel...");
 			Hook->giveItem(0x400009CE, 1);
 		}
 		else if (line == "z") {
-			std::cout << "Giving Zweihander..." << std::endl;
+			Logger->log("Giving Zweihander...");
 			Hook->giveItem(0x00055730, 1);
 		}
 #endif
