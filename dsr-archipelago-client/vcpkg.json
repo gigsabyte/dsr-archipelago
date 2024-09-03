@@ -1,0 +1,9 @@
+{
+  "dependencies": [
+    "asio",
+    "nlohmann-json",
+    "openssl-windows",
+    "valijson",
+    "websocketpp"
+  ]
+}
