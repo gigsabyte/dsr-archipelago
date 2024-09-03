@@ -1,3 +1,6 @@
 [submodule "dsr-archipelago-client/submodules/minhook"]
 	path = dsr-archipelago-client/submodules/minhook
 	url = https://github.com/TsudaKageyu/minhook
+[submodule "dsr-archipelago-client/submodules/apclientpp"]
+	path = dsr-archipelago-client/submodules/apclientpp
+	url = https://github.com/black-sliver/apclientpp
