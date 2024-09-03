@@ -3,6 +3,7 @@
 #include <windows.h>
 #include "DSRLogger.h"
 #include "DSRHook.h"
+#include "ArchipelagoManager.h"
 
 #define int3 __debugbreak();
 
