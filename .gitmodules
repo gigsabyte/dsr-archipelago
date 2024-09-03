@@ -4,3 +4,6 @@
 [submodule "dsr-archipelago-client/submodules/apclientpp"]
 	path = dsr-archipelago-client/submodules/apclientpp
 	url = https://github.com/black-sliver/apclientpp
+[submodule "dsr-archipelago-client/submodules/wswrap"]
+	path = dsr-archipelago-client/submodules/wswrap
+	url = https://github.com/black-sliver/wswrap
